@@ -30,7 +30,7 @@ parameter  REQ2GNT = 2;
 //Rule1: Arbiter should assert only one of the grant signals at any given time
 assert_only1_grant: assert ( $isonehot({gnt1,gnt2,gnt3}) )  
                     else begin
-                     $error("More than one grant asserted in same time")
+                     $error("More than one grant asserted in same time");
                     end
 
 //Rule2: If not in Reset - none of  gnt1/2/3 should be X/Z
@@ -38,7 +38,7 @@ always @ (posedge clk) begin
   if (!resetn) begin
      assert_gnt_check_x: assert (not(isunknown({gnt1,gnt2,gnt3})))
                          else begin
-			   $error("Gnt1/2/3 going X ")
+			   $error("Gnt1/2/3 going X ");
 			 end
      
   end
